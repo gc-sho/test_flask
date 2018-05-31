@@ -5,6 +5,7 @@ import errno
 from flask import Flask, jsonify
 from flask_sqlalchemy import SQLAlchemy
 from flasgger import APISpec, Swagger
+from pymongo import MongoClient
 import logging
 
 # Initialize Flask instance
@@ -26,6 +27,10 @@ swag = Swagger(application, template_file='api_docs/gc.yaml')
 
 # Initialize SQLAclhemy instance
 db = SQLAlchemy(application)
+
+# Initialize MongoDB
+mongo_client = MongoClient(application.config['MONGO_PATH'])
+mongo_db     = mongo_client[application.config['MONGO_DB']]
 
 # Initialize global loger instance
 logger = logging.getLogger(__name__)

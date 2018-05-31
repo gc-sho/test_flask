@@ -15,6 +15,10 @@ class BaseConfig(object):
     TMP_DIR_PATH = 'gc_test_flask/tmp'
     DB_DIR_PATH = 'gc_test_flask/db'
 
+    # Mongo conf
+    MONGO_PATH = 'mongodb://localhost:27017/'
+    MONGO_DB   = 'test_flask'
+
     # Sqlite3 configuration
     SQLALCHEMY_DATABASE_URI = 'sqlite:///db/gc-test-flask.db'
     # I set this to suppress some boring
