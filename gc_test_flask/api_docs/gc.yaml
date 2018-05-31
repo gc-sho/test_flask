@@ -1,0 +1,34 @@
+swagger: '2.0'
+basePath: "/api/v1"
+info:
+  title: Test Flask
+  description: Test Flask api for testing
+  version: 0.0.1
+produces:
+  - application/json
+paths:
+  "/":
+    get:
+      produces:
+        - application/json
+      description: Simple string
+      operationId: logs
+      responses:
+        200:
+          description: Simple string
+          schema:
+            '$ref': '#/definitions/Logs'
+      schemes:
+        - http
+        - https
+      summary: Simple string
+      tags:
+        - Logs
+
+definitions:
+  Error:
+    type: object
+    properties:
+      message:
+        type: string
+        description: Something went wrong

@@ -10,7 +10,7 @@ import logging
 # Initialize Flask instance
 application = Flask(__name__)
 # Loading gc-lite-client configuration
-application.config.from_object('gc_lite_client.config.BaseConfig')
+application.config.from_object('gc_test_flask.config.BaseConfig')
 
 if not os.path.exists(os.path.dirname(application.config['GC_LOG_DIR'])):
     try:    
