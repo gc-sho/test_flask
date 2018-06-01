@@ -27,5 +27,5 @@ class MongoModel(dict):
             self.clear()
 
 class User(MongoModel):
-    collection = mongo_db['user']
+    collection = mongo_db['User']
 

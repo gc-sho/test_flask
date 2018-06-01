@@ -16,7 +16,8 @@ class BaseConfig(object):
     DB_DIR_PATH = 'gc_test_flask/db'
 
     # Mongo conf
-    MONGO_PATH = 'mongodb://localhost:27017/'
+    MONGO_PATH = 'localhost',
+    MONGO_PORT = 27017;
     MONGO_DB   = 'test_flask'
 
     # Sqlite3 configuration

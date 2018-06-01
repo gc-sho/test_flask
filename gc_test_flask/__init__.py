@@ -29,7 +29,7 @@ swag = Swagger(application, template_file='api_docs/gc.yaml')
 db = SQLAlchemy(application)
 
 # Initialize MongoDB
-mongo_client = MongoClient(application.config['MONGO_PATH'])
+mongo_client = MongoClient(application.config['MONGO_PATH'], application.config['MONGO_PORT'])
 mongo_db     = mongo_client[application.config['MONGO_DB']]
 
 # Initialize global loger instance
