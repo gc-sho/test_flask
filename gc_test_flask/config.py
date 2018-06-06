@@ -12,6 +12,9 @@ class BaseConfig(object):
     MONGO_PORT = 27017
     MONGO_DB   = 'test_flask'
 
+    # hash pass
+    PASS_SECRET = 'you_will_never_know'
+
     # Logging information
     FORMAT = "[%(asctime)s] %(message)s"
     

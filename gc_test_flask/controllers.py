@@ -1,5 +1,6 @@
 from flask import jsonify, request, abort
 from flask import Blueprint
+from utils import encrypt_pass
 from gc_test_flask.models import User, MongoModel
 from serializers import UserCreateSerializer
 from gc_test_flask.gateways import MongoDBGateway
@@ -17,11 +18,10 @@ def get_create_user():
     if request.method == 'GET':
         return jsonify({'user': 'user data'}), 200
     if request.method == 'POST':
-        
         # get data from body and add it to a model
         user = User(UserCreateSerializer.to_format(request.get_json()))
-        # TODO hash password
-
+        # hash password
+        user['password'] = encrypt_pass(user.get('password'))
         # save to mongo
         mongoDBGateway = MongoDBGateway(user.collection)
         userID = mongoDBGateway.save(user, None)
