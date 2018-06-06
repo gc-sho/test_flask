@@ -25,9 +25,6 @@ if not os.path.exists(os.path.dirname(application.config['GC_LOG_DIR'])):
 # Initialize Swagger documentation
 swag = Swagger(application, template_file='api_docs/gc.yaml')
 
-# Initialize SQLAclhemy instance
-db = SQLAlchemy(application)
-
 # Initialize MongoDB
 mongo_client = MongoClient(application.config['MONGO_PATH'], application.config['MONGO_PORT'])
 mongo_db     = mongo_client[application.config['MONGO_DB']]

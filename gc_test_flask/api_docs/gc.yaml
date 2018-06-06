@@ -7,23 +7,73 @@ info:
 produces:
   - application/json
 paths:
-  "/":
+  
+  "/user":
     get:
       produces:
         - application/json
-      description: Simple string
-      operationId: logs
+      description: Get user/users
+      operationId: users
       responses:
         200:
-          description: Simple string
+          description: Gets user or list of users if id is not provided
           schema:
-            '$ref': '#/definitions/Logs'
+            '$ref': '#/definitions/User'
       schemes:
         - http
         - https
-      summary: Simple string
+      summary: Gets user or list of users if id is not provided
       tags:
-        - Logs
+        - User
+
+    post:
+      produces:
+        - application/json
+      consumes:
+        - application/json
+      description: Create user
+      operationId: user
+      parameters:
+        - in: body
+          name: params
+          description: Parameters for user model
+          schema:
+              '$ref': '#/definitions/User'
+      responses:
+        200:
+          description: Create user
+          schema:
+            '$ref': '#/definitions/User'
+      schemes:
+        - http
+        - https
+      summary: Gets user or list of users if id is not provided
+      tags:
+        - User
+        
+  "/user/{id_user}":
+    get:
+      produces:
+        - application/json
+      description: Get user/users
+      operationId: users
+      parameters:
+        - in: path
+          name: id_user
+          description: user id
+          type: string
+          required: True
+      responses:
+        200:
+          description: Gets user or list of users if id is not provided
+          schema:
+            '$ref': '#/definitions/User'
+      schemes:
+        - http
+        - https
+      summary: Gets user or list of users if id is not provided
+      tags:
+        - User
 
 definitions:
   Error:
@@ -32,3 +82,24 @@ definitions:
       message:
         type: string
         description: Something went wrong
+  User:
+    type: object
+    properties:
+      name: 
+        type: 'string'
+        description: 'Users fullname'
+      city: 
+        type: 'string'
+        description: 'City'
+      state: 
+        type: 'string'
+        description: 'State'
+      email: 
+        type: 'string'
+        description: 'Users email address'
+      address: 
+        type: 'string'
+        description: 'Address'
+      password: 
+        type: 'string'
+        description: 'Password'
