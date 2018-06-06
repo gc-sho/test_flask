@@ -10,7 +10,7 @@ class MongoDBGateway(object):
             return self.collection.insert(data)
         else:
             return self.collection.update(
-                { "_id": ObjectId(_id) }, data)
+                { "_id": ObjectId(_id) }, {'$set': data})
 
     def reload(self, _id, model):
         if _id:

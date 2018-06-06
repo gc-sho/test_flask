@@ -2,7 +2,7 @@ from flask import jsonify, request, abort
 from flask import Blueprint
 from utils import encrypt_pass
 from gc_test_flask.models import User, MongoModel
-from serializers import UserCreateSerializer
+from serializers import UserCreateSerializer, UserUpdateSerializer
 from gc_test_flask.gateways import MongoDBGateway
 # This line has to be here, otherwise we will get import error
 api_v1 = Blueprint('api_v1', __name__)
@@ -40,5 +40,10 @@ def get_update_user(id_user):
         
         return jsonify({'user': user}), 200
     if request.method == 'POST':
-        # TODO update user
+        # update user
+        user = User(UserUpdateSerializer.to_format(request.get_json()))
+
+        mongoDBGateway = MongoDBGateway(user.collection)
+        mongoDBGateway.save(user, id_user)
+
         return jsonify({'success': 'Successfully updated user.'}), 200

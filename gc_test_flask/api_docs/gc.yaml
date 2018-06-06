@@ -67,11 +67,43 @@ paths:
         200:
           description: Gets user or list of users if id is not provided
           schema:
-            '$ref': '#/definitions/User'
+            '$ref': '#/definitions/UserNoPassword'
       schemes:
         - http
         - https
       summary: Gets user or list of users if id is not provided
+      tags:
+        - User
+
+    post:
+      produces:
+        - application/json
+      consumes:
+        - application/json
+      description: Update user
+      operationId: user
+      parameters:
+        - in: path
+          name: id_user
+          description: user id
+          type: string
+          required: True
+        - in: body
+          name: params
+          description: Parameters for user model
+          schema:
+              '$ref': '#/definitions/UserNoPassword'
+          discriminator:
+            propertyName: password
+      responses:
+        200:
+          description: Create user
+          schema:
+            '$ref': '#/definitions/UserNoPassword'
+      schemes:
+        - http
+        - https
+      summary: Updates users basic info
       tags:
         - User
 
@@ -82,7 +114,7 @@ definitions:
       message:
         type: string
         description: Something went wrong
-  User:
+  UserDefault:
     type: object
     properties:
       name: 
@@ -100,6 +132,16 @@ definitions:
       address: 
         type: 'string'
         description: 'Address'
-      password: 
-        type: 'string'
-        description: 'Password'
+  UserNoPassword: 
+    allOf:
+      - $ref: '#/definitions/UserDefault'
+      - type: object
+  User: 
+    allOf:
+      - $ref: '#/definitions/UserDefault'
+      - type: object
+        properties:
+          password: 
+            type: 'string'
+            description: 'Password'
+      

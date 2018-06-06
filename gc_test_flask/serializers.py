@@ -19,5 +19,5 @@ class UserUpdateSerializer(object):
     @staticmethod
     def to_format(data):
         DEFAULT_USER = userDefault(data)
-        DEFAULT_USER['_id'] = data.get('_id')
+        del DEFAULT_USER['password']
         return DEFAULT_USER
