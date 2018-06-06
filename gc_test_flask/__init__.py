@@ -3,7 +3,6 @@ from os.path import expanduser
 import errno
 
 from flask import Flask, jsonify
-from flask_sqlalchemy import SQLAlchemy
 from flasgger import APISpec, Swagger
 from pymongo import MongoClient
 import logging
