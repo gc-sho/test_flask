@@ -18,10 +18,6 @@ class BaseConfig(object):
     # Logging information
     FORMAT = "[%(asctime)s] %(message)s"
     
-    # TODO: Is it really platform independent?
-    # https://stackoverflow.com/questions/4028904/how-to-get-the-home-directory-in-python#4028943
-    GC_LOG_DIR = os.path.join(expanduser('~'), 'GcLogs/gc_test.log')
-
 class TestingConfig(BaseConfig):
     TESTING = True
     DEBUG = True

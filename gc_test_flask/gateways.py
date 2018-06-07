@@ -1,26 +1,47 @@
 from models import User
-from bson import ObjectId
+from gc_test_flask.utils import check_object_id_validation
+from pymongo.errors import ConnectionFailure
+
 
 class MongoDBGateway(object):
-    def __init__(self, collection):
-        self.collection = collection        
 
-    def save(self, data, _id):
-        if not _id:            
-            return self.collection.insert(data)
-        else:
-            return self.collection.update(
-                { "_id": ObjectId(_id) }, {'$set': data})
+    def save(self, collection, data):
+        # Check for result
+        res = collection.find_one({"email": data['email']})
+        if not res:
+            return collection.insert(data), None
 
-    def reload(self, _id, model):
-        if _id:
+        return None, 'User already exists'
+            
+    def update(self, collection, where, data):
+        try:
+            res = collection.find_one_and_update(where, {'$set': data})
+            if not res:
+                return None, 'Not found'
+            return res, None
+        except ConnectionFailure:
+            return None, 'DB Connection failed'
+        
+    def load(self, collection, where):
+        if where:
             # gets results
-            result = self.collection.find_one({"_id": ObjectId(_id)})
-            result['_id'] = str(_id)
-            model.update(result)
+            try:
+                res = collection.find_one(where)      
+                if not res:
+                    return None, 'Not found'
+                return res, None          
+            except ConnectionFailure:
+                return None, 'DB Connection failed'
+        else:
+            return None, 'Please provide required attributes'
 
-    def remove(self, data, model):
-        if data._id:
-            self.collection.remove({"_id": ObjectId(data._id)})
-            # todo check
-            model.clear()
+    def remove(self, _id, collection):
+        if _id:
+            where, err = check_object_id_validation(_id)            
+            if err: 
+                return None, 'Bad request', 400
+            try:
+                collection.remove(where)
+            except ConnectionFailure:
+                return None, 'DB Connection failed'
+            

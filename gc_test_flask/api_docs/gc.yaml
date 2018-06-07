@@ -9,23 +9,6 @@ produces:
 paths:
   
   "/user":
-    get:
-      produces:
-        - application/json
-      description: Get user/users
-      operationId: users
-      responses:
-        200:
-          description: Gets user or list of users if id is not provided
-          schema:
-            '$ref': '#/definitions/User'
-      schemes:
-        - http
-        - https
-      summary: Gets user or list of users if id is not provided
-      tags:
-        - User
-
     post:
       produces:
         - application/json
@@ -47,7 +30,7 @@ paths:
       schemes:
         - http
         - https
-      summary: Gets user or list of users if id is not provided
+      summary: Create user
       tags:
         - User
         
@@ -65,13 +48,13 @@ paths:
           required: True
       responses:
         200:
-          description: Gets user or list of users if id is not provided
+          description: Get user by id
           schema:
             '$ref': '#/definitions/UserNoPassword'
       schemes:
         - http
         - https
-      summary: Gets user or list of users if id is not provided
+      summary: Get user by id
       tags:
         - User
 

@@ -14,6 +14,16 @@ class UserCreateSerializer(object):
         DEFAULT_USER = userDefault(data)
         return DEFAULT_USER
 
+class UserShowSerializer(object):
+    @staticmethod
+    def to_web(data):
+        return {
+            'name': data.get('name'),
+            'city': data.get('city'),
+            'state': data.get('state'),
+            'email': data.get('email'),
+            'address': data.get('address')
+        }
 
 class UserUpdateSerializer(object):
     @staticmethod
