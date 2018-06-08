@@ -1,0 +1,9 @@
+#!/usr/bin/env bash
+
+echo "Starting Storage Servers"
+if [[ "$(docker ps | grep test-flask-mongo 2> /dev/null)" == "" ]]; then
+docker start test-flask-mongo
+fi
+if [[ "$(docker ps | grep test-flask-postgres 2> /dev/null)" == "" ]]; then
+docker start test-flask-postgres
+fi

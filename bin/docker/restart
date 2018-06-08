@@ -1,0 +1,5 @@
+#!/usr/bin/env bash
+
+echo "Restarting Storage Server"
+docker restart test-flask-mongo
+docker restart test-flask-postgres

@@ -1,0 +1,25 @@
+#!/usr/bin/env bash
+
+source lib/functions
+
+echo -e ""
+
+echo "Building Storage Servers..."
+if ! container_exists test-flask-mongo; then
+  echo "Building MongoDB"
+  docker run -d --name test-flask-mongo \
+              -p 27017:27017 \
+              mongo:latest
+fi
+
+if ! container_exists test-flask-postgres; then
+  echo "Building Postgres"
+  docker run -d --name test-flask-postgres \
+                 -p 5432:5432 \
+                 -e "POSTGRES_USER=test_flask_rdb" \
+                 -e "POSTGRES_PASSWORD=flask123" \
+                 -e "POSTGRES_DB=test_flask_rdb" \
+                 postgres:9.5
+fi
+
+echo -e ""

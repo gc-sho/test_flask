@@ -1,0 +1,20 @@
+#!/usr/bin/env bash
+
+# Change working directory to script path
+cd "$(dirname "$0")"
+
+echo "Verifying prerequisites..."
+
+lib/prerequisites || {
+  echo "Please, install and run missing prerequisites and rerun npm install or setup"
+  exit 1
+}
+
+echo "Installing Docker images, if needed"
+./docker/build
+
+echo "Running Docker containers, if needed"
+./docker/start
+
+# Go back to project root
+cd ..

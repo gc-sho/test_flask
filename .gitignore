@@ -11,3 +11,4 @@ gc_test_flask/tmp/*
 gc_test_flask/db/*
 *.pyc
 qq_test.py
+.DS_Store

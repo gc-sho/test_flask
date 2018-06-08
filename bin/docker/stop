@@ -1,0 +1,5 @@
+#!/usr/bin/env bash
+
+echo "Stopping Storage Servers"
+docker stop test-flask-mongo
+docker stop test-flask-postgres
