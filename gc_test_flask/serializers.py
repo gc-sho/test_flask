@@ -1,11 +1,11 @@
 def userDefault(data):
     return {
-        'name': data.get('name'),
-        'city': data.get('city'),
-        'state': data.get('state'),
-        'email': data.get('email'),
-        'address': data.get('address'),
-        'password': data.get('password')
+        'name': data['name'],
+        'city': data['city'],
+        'state': data['state'],
+        'email': data['email'],
+        'address': data['address'],
+        'password': data['password']
     }
 
 class UserCreateSerializer(object):
@@ -18,11 +18,11 @@ class UserShowSerializer(object):
     @staticmethod
     def to_web(data):
         return {
-            'name': data.get('name'),
-            'city': data.get('city'),
-            'state': data.get('state'),
-            'email': data.get('email'),
-            'address': data.get('address')
+            'name': data['name'],
+            'city': data['city'],
+            'state': data['state'],
+            'email': data['email'],
+            'address': data['address']
         }
 
 class UserUpdateSerializer(object):
