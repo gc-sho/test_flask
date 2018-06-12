@@ -20,7 +20,7 @@ class UserSQL(postgres_db.Model):
     address = postgres_db.Column(postgres_db.String(40), default='', nullable=False)
     password = postgres_db.Column(postgres_db.String(140), unique=True, nullable=False)
 
-    def __init__(self, email, name, city, state, address, password):
+    def __init__(self, name, email, city, state, address, password):
         self.name = name
         self.email = email
         self.city = city
