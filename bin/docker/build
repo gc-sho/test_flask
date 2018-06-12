@@ -18,7 +18,7 @@ if ! container_exists test-flask-postgres; then
                  -p 5432:5432 \
                  -e "POSTGRES_USER=test_flask_rdb" \
                  -e "POSTGRES_PASSWORD=flask123" \
-                 -e "POSTGRES_DB=test_flask_rdb" \
+                 -e "POSTGRES_DB=test_flask-db" \
                  postgres:9.5
 fi
 

@@ -18,6 +18,7 @@ setup(
         'requests>=2.4.3',
         'Flask>=0.12',
         'flasgger==0.8.1',
-        'pymongo'
+        'pymongo',
+        'Flask-SQLAlchemy>=2.1'
     ]
 )

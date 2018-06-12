@@ -10,7 +10,11 @@ class BaseConfig(object):
     # Mongo conf
     MONGO_PATH = 'localhost'
     MONGO_PORT = 27017
-    MONGO_DB   = 'test_flask'
+    MONGO_DB = 'test_flask'
+
+    # Postgre conf
+    SQLALCHEMY_DATABASE_URI = 'postgresql://test_flask_rdb:flask123@localhost:5432/test_flask-db'
+    SQLALCHEMY_TRACK_MODIFICATIONS = False
 
     # hash pass
     PASS_SECRET = 'you_will_never_know'
