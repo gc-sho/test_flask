@@ -1,7 +1,7 @@
 from flask import jsonify, request, abort
 from flask import Blueprint
 from utils import encrypt_pass, check_insert_user_data, check_object_id_validation
-from gc_test_flask.models import User, MongoModel
+from gc_test_flask.models import UserMongo as User, MongoModel
 from serializers import UserCreateSerializer, UserUpdateSerializer, UserShowSerializer
 from gc_test_flask.gateways import MongoDBGateway
 # This line has to be here, otherwise we will get import error

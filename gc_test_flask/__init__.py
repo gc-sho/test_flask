@@ -21,7 +21,7 @@ mongo_client = MongoClient(application.config['MONGO_PATH'], application.config[
 mongo_db = mongo_client[application.config['MONGO_DB']]
 
 # Initialize PostgreSQL
-db = SQLAlchemy(application)
+postgres_db = SQLAlchemy(application)
 
 # Register the blueprint and import the controllers
 from gc_test_flask.controllers import api_v1

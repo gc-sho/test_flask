@@ -1,4 +1,4 @@
-from models import User
+from models import UserMongo as User
 from gc_test_flask.utils import check_object_id_validation
 from pymongo.errors import ConnectionFailure
 
