@@ -1,5 +1,8 @@
 #!/usr/bin/env bash
 
+# Change working directory to script path
+cd "$(dirname "$0")"
+
 echo -e ""
 
 echo "Opening Mongo shell..."
